@@ -127,7 +127,7 @@
 
 	d3.csv("data.csv", population, function(data){ /*drawing code*/ 
 	xscale.domain([0, data.length - 1]);
-	yscale.domain([0, d3.max(data, function(d){ return d.all; })]);
+	yscale.domain([0, d3.max(data, function(d){ return d.CommunityAreaNumber; })]);
 	
 	var columnwidth = (chartwidth / data.length);
 	columnwidth -= columnwidth * 0.1;
@@ -140,7 +140,7 @@
 	
 	
 	data.forEach(function(d, i, a){
-	var colheight = yscale(d.all);
+	var colheight = yscale(d.CommunityAreaNumber);
     var columngeo = new THREE.BoxGeometry(
     columnwidth, colheight, columnwidth);
     var columnmesh = new THREE.Mesh(columngeo, columnmaterial);
@@ -175,9 +175,26 @@
 	});
 	
 	function population(d) {
-	  d.all = +d.all;
-	  d.male = +d.male;
-	  d.female = +d.female;
+	  
+	 // d.male = +d.male;
+	  //d.female = +d.female;
+	  
+	  d.CommunityAreaName = +d.CommunityAreaName;
+	  d.CommunityAreaNumber = +d.CommunityAreaNumber;
+	  d.PropertyType = +d.PropertyType;
+	  d.PropertyName = +d.PropertyName;
+	  d.Address = +d.Address;
+	  d.ZipCode = +d.ZipCode;
+	  d.PhoneNumber = +d.PhoneNumber;
+	  d.ManagementCompany = +d.ManagementCompany;
+	  d.Units = +d.Units;
+	  d.XCoordinate = +d.XCoordinate;
+	  d.YCoordinate = +d.YCoordinate;
+	  d.Latitude = +d.Latitude;
+	  d.Longitude = +d.Longitude;
+	  d.Location = +d.Location;
+	 // CommunityAreaName,CommunityAreaNumber,PropertyType,PropertyName,Address,ZipCode,PhoneNumber,ManagementCompany,Units,XCoordinate,YCoordinate,Latitude,Longitude,Location
+
 	  return d;
 	}
 	var title = createType({text: "U.S. Population By Age, January 2000 in millions"});
@@ -207,7 +224,7 @@
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
 
-//     renderer.setSize(width, height);
+     renderer.setSize(width, height);
    effect.setSize(width, height);
     }
 
@@ -221,6 +238,7 @@
 
     function render(dt) {
       renderer.render(scene, camera);
+	  effect.render(scene,camera);
     }
 
     function animate(t) {
