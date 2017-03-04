@@ -125,7 +125,7 @@
 
       /////// START CONTENT HERE ////////
 
-	d3.csv("data.csv", population, function(data){ /*drawing code*/ 
+	d3.csv("rental.csv", population, function(data){ /*drawing code*/ 
 	xscale.domain([0, data.length - 1]);
 	yscale.domain([0, d3.max(data, function(d){ return d.CommunityAreaNumber; })]);
 	
