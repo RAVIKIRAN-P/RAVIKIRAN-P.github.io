@@ -125,9 +125,9 @@
 
       /////// START CONTENT HERE ////////
 
-	d3.csv("rental.csv", population, function(data){ /*drawing code*/ 
+	d3.csv("data.csv", population, function(data){ /*drawing code*/ 
 	xscale.domain([0, data.length - 1]);
-	yscale.domain([0, d3.max(data, function(d){ return d.CommunityAreaNumber; })]);
+	yscale.domain([0, d3.max(data, function(d){ return d.all; })]);
 	
 	var columnwidth = (chartwidth / data.length);
 	columnwidth -= columnwidth * 0.1;
@@ -140,7 +140,7 @@
 	
 	
 	data.forEach(function(d, i, a){
-	var colheight = yscale(d.CommunityAreaNumber);
+	var colheight = yscale(d.all);
     var columngeo = new THREE.BoxGeometry(
     columnwidth, colheight, columnwidth);
     var columnmesh = new THREE.Mesh(columngeo, columnmaterial);
@@ -175,10 +175,10 @@
 	});
 	
 	function population(d) {
-	  
-	 // d.male = +d.male;
-	  //d.female = +d.female;
-	  
+	  d.all = +d.all;
+	  d.male = +d.male;
+	  d.female = +d.female;
+	/*  
 	  d.CommunityAreaName = +d.CommunityAreaName;
 	  d.CommunityAreaNumber = +d.CommunityAreaNumber;
 	  d.PropertyType = +d.PropertyType;
@@ -193,7 +193,8 @@
 	  d.Latitude = +d.Latitude;
 	  d.Longitude = +d.Longitude;
 	  d.Location = +d.Location;
-	 // CommunityAreaName,CommunityAreaNumber,PropertyType,PropertyName,Address,ZipCode,PhoneNumber,ManagementCompany,Units,XCoordinate,YCoordinate,Latitude,Longitude,Location
+	  */
+	 // CommunityAreaName,aCommunityAreaNumberll,PropertyType,PropertyName,Address,ZipCode,PhoneNumber,ManagementCompany,Units,XCoordinate,YCoordinate,Latitude,Longitude,Location
 
 	  return d;
 	}
